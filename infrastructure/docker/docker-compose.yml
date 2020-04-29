@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  nest-sample-db:
+    image: mysql:8.0.17
+    container_name: nest-sample-db
+    ports:
+      - '3388:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      TZ: Asia/Tokyo
+    volumes:
+      - ./mysql/mysql-confd:/etc/mysql/conf.d
+
+networks:
+  default:
+    external:
+      name: nest-sample
