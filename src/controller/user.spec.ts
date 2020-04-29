@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ControllerUser } from './user';
 import { ServiceUser } from '../service/user';
 
-describe('AppController', () => {
+describe('User', () => {
   let controllerUser: ControllerUser;
 
   beforeEach(async () => {
@@ -15,7 +15,7 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
+    it('should return id', () => {
       expect(controllerUser.index()).toBe({ id: 'id' });
     });
   });

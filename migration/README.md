@@ -1,8 +1,9 @@
 # マイグレーション
 
-マイグレーションはこの API とは別物なので、このフォルダで独立していなければならない。
+マイグレーションは API とは別物なので、このフォルダで独立していなければならない。
+具体的には、複数のシステムからDBにアクセスする場合などで、このAPIと別なシステムは、このシステムのマイグレーションに追加や実行しないといけなくなってしまいごちゃごちゃになる。
 
-[typeorm](https://typeorm.io/)は以下の DB に対応しているが、
+[typeormのマイグレーション](https://typeorm.io/)は以下の DB に対応しているが、
 
 ```
  MySQL / MariaDB / Postgres / CockroachDB / SQLite / Microsoft SQL Server / Oracle / SAP Hana / sql.js

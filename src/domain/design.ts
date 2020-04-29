@@ -1,17 +1,17 @@
 export class DomainDesign {
-  private readonly id: string;
-  private readonly title: string;
+  private readonly _id: string;
+  private readonly _title: string;
 
   constructor(id: string, title: string) {
-    this.id = id;
-    this.title = title;
+    this._id = id;
+    this._title = title;
   }
 
-  public getId(): string {
-    return this.id;
+  public id(): string {
+    return this._id;
   }
 
-  public getTitle(): string {
-    return this.title;
+  public title(): string {
+    return this._title;
   }
 }

@@ -11,8 +11,8 @@ export class ControllerUser {
   ) {}
 
   @Get()
-  public index(@Res() res: Response) {
-    const domainUser = this.serviceUser.index();
+  public async index(@Res() res: Response) {
+    const domainUser = await this.serviceUser.index();
     res.status(HttpStatus.OK).json(this.responseUser.index(domainUser));
   }
 }

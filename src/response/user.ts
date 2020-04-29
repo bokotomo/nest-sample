@@ -4,6 +4,6 @@ import { DomainUser } from '../domain/user';
 @Injectable()
 export class ResponseUser {
   public index(user: DomainUser): object {
-    return { id: user.getId() };
+    return { id: user.id() };
   }
 }

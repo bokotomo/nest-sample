@@ -1,6 +1,8 @@
 # nest api sample
 
-一式やってみる
+一式やってみる  
+・簡単なことしかやってないので、ドメインの必要性がないが複雑になってくると必要。
+・orm は entity 作らないといけないのがめんどい、[クエリビルダー](https://github.com/knex/knex)の方が楽ではある。
 
 ## 使い方
 
@@ -23,5 +25,7 @@ npm run start
 ### SMPLE
 
 ```
-curl -X POST http://localhost:3001/user/create
+curl -X GET http://localhost:3001/users
+curl -X GET http://localhost:3001/users/1
+curl -X POST http://localhost:3001/users/create
 ```

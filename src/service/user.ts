@@ -6,7 +6,7 @@ import { DomainUser } from '../domain/user';
 export class ServiceUser {
   constructor(private readonly repositoryUser: RepositoryUser) {}
 
-  public index(): DomainUser {
+  public async index(): Promise<DomainUser> {
     return this.repositoryUser.findAll();
   }
 }

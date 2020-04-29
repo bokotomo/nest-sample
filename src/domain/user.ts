@@ -1,17 +1,17 @@
 export class DomainUser {
-  private readonly id: string;
-  private readonly name: string;
+  private readonly _id: string;
+  private readonly _name: string;
 
   constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
+    this._id = id;
+    this._name = name;
   }
 
-  public getId(): string {
-    return this.id;
+  public id(): string {
+    return this._id;
   }
 
-  public getName(): string {
-    return this.name;
+  public name(): string {
+    return this._name;
   }
 }

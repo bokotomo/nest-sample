@@ -9,4 +9,8 @@ export class ServiceDesign {
   public index(): DomainDesign {
     return this.repositoryDesign.findAll();
   }
+
+  public show(id: string): DomainDesign {
+    return this.repositoryDesign.findById(id);
+  }
 }

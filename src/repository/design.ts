@@ -6,4 +6,8 @@ export class RepositoryDesign {
   public findAll(): DomainDesign {
     return new DomainDesign('id', 'name');
   }
+
+  public findById(id: string): DomainDesign {
+    return new DomainDesign(id, 'name');
+  }
 }
