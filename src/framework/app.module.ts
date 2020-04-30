@@ -5,9 +5,11 @@ import { ControllerDesign } from '../controller/design';
 import { providerEntitys } from './provider/entity';
 import { providerRepositorys } from './provider/repository';
 import { providerResponses } from './provider/response';
-import { databaseProviders } from '../driver/database';
+import { databaseProviders } from './provider/database';
 
+const envFilePath = './env/.env';
 @Module({
+  imports: [ConfigModule.forRoot({ envFilePath, isGlobal: true })],
   controllers: [ControllerUser, ControllerDesign],
   providers: [
     ...providerEntitys,

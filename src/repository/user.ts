@@ -8,26 +8,26 @@ import { IRepositoryUser } from '../usecase/port/user';
 export class RepositoryUser extends IRepositoryUser {
   constructor(
     @Inject('USER_REPOSITORY')
-    private userRepository: Repository<User>,
+    private repositoryUser: Repository<User>,
   ) {
     super();
   }
 
   public async create(name: string, age: number) {
     const user = new User();
-    // user.id = 'id';
+    // user.id = 'unique_id';
     user.name = name;
     user.age = age;
-    await this.userRepository.save(user);
+    await this.repositoryUser.save(user);
   }
 
   public async findAll(): Promise<DomainUser[]> {
-    const data = await this.userRepository.find();
-    console.log(data);
-    return [new DomainUser('id', 'name')];
+    const users = (await this.repositoryUser.find()) as User[];
+    return users.map(user => new DomainUser(user.id, user.name));
   }
 
   public async findById(id: string): Promise<DomainUser> {
-    return new DomainUser(id, 'name');
+    const user = (await this.repositoryUser.findOne(id)) as User;
+    return new DomainUser(user.id, user.name);
   }
 }

@@ -1,7 +1,16 @@
-import { Controller, Get, Param, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { RepositoryDesign } from '../repository/design';
 import { ResponseDesign } from '../adapter/response/design';
-import { UseCaseDesignFind } from '../usecase/design';
+import { UseCaseDesignFind, UseCaseDesignCreate } from '../usecase/design';
+import { RequestDesignCreate } from '../request/design';
 
 @Controller('designs')
 export class ControllerDesign {
@@ -24,5 +33,12 @@ export class ControllerDesign {
     const usecase = new UseCaseDesignFind(this.repositoryDesign);
     const domainDesign = await usecase.getById(id);
     return this.responseDesign.show(domainDesign);
+  }
+
+  @Post('create')
+  @HttpCode(HttpStatus.CREATED)
+  public async create(@Body() body: RequestDesignCreate) {
+    const usecase = new UseCaseDesignCreate(this.repositoryDesign);
+    await usecase.create(body.title);
   }
 }

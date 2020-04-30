@@ -16,3 +16,15 @@ export class UseCaseDesignFind {
     return this.repositoryDesign.findById(id);
   }
 }
+
+export class UseCaseDesignCreate {
+  private readonly repositoryDesign: IRepositoryDesign;
+
+  public constructor(repositoryDesign: IRepositoryDesign) {
+    this.repositoryDesign = repositoryDesign;
+  }
+
+  public create(title: string) {
+    return this.repositoryDesign.create(title);
+  }
+}
