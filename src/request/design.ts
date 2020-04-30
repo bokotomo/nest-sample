@@ -1,10 +1,4 @@
-import {
-  IsNotEmpty,
-  MinLength,
-  MaxLength,
-  IsString,
-  IsPositive,
-} from 'class-validator';
+import { IsNotEmpty, MinLength, MaxLength, IsString } from 'class-validator';
 
 export class RequestDesignCreate {
   @IsNotEmpty()

@@ -12,7 +12,7 @@ export const databaseProviders = [
         password: process.env.DATABASE_PASSWORD as string,
         database: process.env.DATABASE_DB as string,
         entities: [__dirname + '/../../entity/*.js'],
-        synchronize: true,
+        synchronize: true, // 考える。モデルの自動マイグレーションON/OFF。
       }),
   },
 ];
