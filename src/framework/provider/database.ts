@@ -11,7 +11,7 @@ export const databaseProviders = [
         username: process.env.DATABASE_USERNAME as string,
         password: process.env.DATABASE_PASSWORD as string,
         database: process.env.DATABASE_DB as string,
-        entities: [__dirname + '/../../entity/*.js'],
+        entities: [__dirname + '/../../entity/*.{ts,js}'],
         synchronize: true, // 考える。モデルの自動マイグレーションON/OFF。
       }),
   },

@@ -8,7 +8,9 @@ import { providerResponses } from './provider/response';
 import { databaseProviders } from './provider/database';
 import { providerUseCases } from './provider/usecase';
 
-const envFilePath = './env/.env';
+const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+const envFilePath = __dirname + '/../../env/' + envFile;
+
 @Module({
   imports: [ConfigModule.forRoot({ envFilePath, isGlobal: true })],
   controllers: [ControllerUser, ControllerDesign],
