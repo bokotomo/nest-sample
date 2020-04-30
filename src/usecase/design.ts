@@ -1,30 +1,34 @@
+import { Injectable } from '@nestjs/common';
 import { DomainDesign } from '../domain/design';
+import { RepositoryDesign } from '../repository/design';
 import { IRepositoryDesign } from './port/design';
 
+@Injectable()
 export class UseCaseDesignFind {
-  private readonly repositoryDesign: IRepositoryDesign;
+  private readonly iRepositoryDesign: IRepositoryDesign;
 
-  public constructor(repositoryDesign: IRepositoryDesign) {
-    this.repositoryDesign = repositoryDesign;
+  constructor(private readonly repositoryDesign: RepositoryDesign) {
+    this.iRepositoryDesign = repositoryDesign;
   }
 
   public getAll(): Promise<DomainDesign[]> {
-    return this.repositoryDesign.findAll();
+    return this.iRepositoryDesign.findAll();
   }
 
   public getById(id: string): Promise<DomainDesign> {
-    return this.repositoryDesign.findById(id);
+    return this.iRepositoryDesign.findById(id);
   }
 }
 
+@Injectable()
 export class UseCaseDesignCreate {
-  private readonly repositoryDesign: IRepositoryDesign;
+  private readonly iRepositoryDesign: IRepositoryDesign;
 
-  public constructor(repositoryDesign: IRepositoryDesign) {
-    this.repositoryDesign = repositoryDesign;
+  constructor(private readonly repositoryDesign: RepositoryDesign) {
+    this.iRepositoryDesign = repositoryDesign;
   }
 
   public create(title: string) {
-    return this.repositoryDesign.create(title);
+    return this.iRepositoryDesign.create(title);
   }
 }

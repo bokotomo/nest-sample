@@ -6,6 +6,7 @@ import { providerEntitys } from './provider/entity';
 import { providerRepositorys } from './provider/repository';
 import { providerResponses } from './provider/response';
 import { databaseProviders } from './provider/database';
+import { providerUseCases } from './provider/usecase';
 
 const envFilePath = './env/.env';
 @Module({
@@ -15,6 +16,7 @@ const envFilePath = './env/.env';
     ...providerEntitys,
     ...providerResponses,
     ...providerRepositorys,
+    ...providerUseCases,
     ...databaseProviders,
   ],
   exports: [...databaseProviders],

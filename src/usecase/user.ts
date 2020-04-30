@@ -1,30 +1,34 @@
+import { Injectable } from '@nestjs/common';
 import { DomainUser } from '../domain/user';
+import { RepositoryUser } from '../repository/user';
 import { IRepositoryUser } from './port/user';
 
+@Injectable()
 export class UseCaseUserFind {
-  private readonly repositoryUser: IRepositoryUser;
+  private readonly iRepositoryUser: IRepositoryUser;
 
-  public constructor(repositoryUser: IRepositoryUser) {
-    this.repositoryUser = repositoryUser;
+  public constructor(private readonly repositoryUser: RepositoryUser) {
+    this.iRepositoryUser = repositoryUser;
   }
 
   public getAll(): Promise<DomainUser[]> {
-    return this.repositoryUser.findAll();
+    return this.iRepositoryUser.findAll();
   }
 
   public getById(id: string): Promise<DomainUser> {
-    return this.repositoryUser.findById(id);
+    return this.iRepositoryUser.findById(id);
   }
 }
 
+@Injectable()
 export class UseCaseUserCreate {
-  private readonly repositoryUser: IRepositoryUser;
+  private readonly iRepositoryUser: IRepositoryUser;
 
-  public constructor(repositoryUser: IRepositoryUser) {
-    this.repositoryUser = repositoryUser;
+  public constructor(private readonly repositoryUser: RepositoryUser) {
+    this.iRepositoryUser = repositoryUser;
   }
 
   public create(name: string, age: number) {
-    return this.repositoryUser.create(name, age);
+    return this.iRepositoryUser.create(name, age);
   }
 }
