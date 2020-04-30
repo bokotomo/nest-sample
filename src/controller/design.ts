@@ -1,24 +1,28 @@
-import { Controller, Get, Res, Param, HttpStatus } from '@nestjs/common';
-import { ServiceDesign } from '../service/design';
-import { ResponseDesign } from '../response/design';
-import { Response } from 'express';
+import { Controller, Get, Param, HttpCode, HttpStatus } from '@nestjs/common';
+import { RepositoryDesign } from '../repository/design';
+import { ResponseDesign } from '../adapter/response/design';
+import { FindDesignUseCase } from '../usecase/design';
 
 @Controller('designs')
 export class ControllerDesign {
   constructor(
-    private readonly serviceDesign: ServiceDesign,
+    private readonly repositoryDesign: RepositoryDesign,
     private readonly responseDesign: ResponseDesign,
   ) {}
 
   @Get()
-  public index(@Res() res: Response) {
-    const domainDesign = this.serviceDesign.index();
-    res.status(HttpStatus.OK).json(this.responseDesign.index(domainDesign));
+  @HttpCode(HttpStatus.OK)
+  public async index() {
+    const usecase = new FindDesignUseCase(this.repositoryDesign);
+    const domainDesigns = await usecase.getAll();
+    return this.responseDesign.index(domainDesigns);
   }
 
   @Get(':id')
-  public show(@Res() res: Response, @Param('id') id: string) {
-    const domainDesign = this.serviceDesign.show(id);
-    res.status(HttpStatus.OK).json(this.responseDesign.index(domainDesign));
+  @HttpCode(HttpStatus.OK)
+  public async show(@Param('id') id: string) {
+    const usecase = new FindDesignUseCase(this.repositoryDesign);
+    const domainDesign = await usecase.getById(id);
+    return this.responseDesign.show(domainDesign);
   }
 }
