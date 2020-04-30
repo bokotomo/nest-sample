@@ -7,7 +7,7 @@ import { IRepositoryDesign } from './port/design';
 export class UseCaseDesignFind {
   private readonly iRepositoryDesign: IRepositoryDesign;
 
-  constructor(private readonly repositoryDesign: RepositoryDesign) {
+  constructor(repositoryDesign: RepositoryDesign) {
     this.iRepositoryDesign = repositoryDesign;
   }
 
@@ -24,7 +24,7 @@ export class UseCaseDesignFind {
 export class UseCaseDesignCreate {
   private readonly iRepositoryDesign: IRepositoryDesign;
 
-  constructor(private readonly repositoryDesign: RepositoryDesign) {
+  constructor(repositoryDesign: RepositoryDesign) {
     this.iRepositoryDesign = repositoryDesign;
   }
 

@@ -7,7 +7,7 @@ import { IRepositoryUser } from './port/user';
 export class UseCaseUserFind {
   private readonly iRepositoryUser: IRepositoryUser;
 
-  public constructor(private readonly repositoryUser: RepositoryUser) {
+  public constructor(repositoryUser: RepositoryUser) {
     this.iRepositoryUser = repositoryUser;
   }
 
@@ -24,7 +24,7 @@ export class UseCaseUserFind {
 export class UseCaseUserCreate {
   private readonly iRepositoryUser: IRepositoryUser;
 
-  public constructor(private readonly repositoryUser: RepositoryUser) {
+  public constructor(repositoryUser: RepositoryUser) {
     this.iRepositoryUser = repositoryUser;
   }
 
