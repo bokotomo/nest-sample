@@ -5,13 +5,11 @@ import { User } from '../entity/user';
 import { IRepositoryUser } from '../usecase/port/user';
 
 @Injectable()
-export class RepositoryUser extends IRepositoryUser {
+export class RepositoryUser implements IRepositoryUser {
   constructor(
     @Inject('USER_REPOSITORY')
     private repositoryUser: Repository<User>,
-  ) {
-    super();
-  }
+  ) {}
 
   public async create(name: string, age: number) {
     const user = new User();

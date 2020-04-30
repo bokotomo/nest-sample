@@ -5,13 +5,11 @@ import { DomainDesign } from '../domain/design';
 import { IRepositoryDesign } from '../usecase/port/design';
 
 @Injectable()
-export class RepositoryDesign extends IRepositoryDesign {
+export class RepositoryDesign implements IRepositoryDesign {
   constructor(
     @Inject('DESIGN_REPOSITORY')
     private repositoryDesign: Repository<Design>,
-  ) {
-    super();
-  }
+  ) {}
 
   public async create(title: string) {
     const design = new Design();
