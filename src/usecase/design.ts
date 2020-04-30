@@ -1,7 +1,7 @@
 import { DomainDesign } from '../domain/design';
 import { IRepositoryDesign } from './port/design';
 
-export class FindDesignUseCase {
+export class UseCaseDesignFind {
   private readonly repositoryDesign: IRepositoryDesign;
 
   public constructor(repositoryDesign: IRepositoryDesign) {

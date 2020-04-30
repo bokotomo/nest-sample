@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ControllerUser } from '../controller/user';
 import { ControllerDesign } from '../controller/design';
 import { providerEntitys } from './provider/entity';

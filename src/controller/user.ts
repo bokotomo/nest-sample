@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { RepositoryUser } from '../repository/user';
 import { ResponseUser } from '../adapter/response/user';
-import { FindUserUseCase } from '../usecase/user';
+import { UseCaseUserFind, UseCaseUserCreate } from '../usecase/user';
 import { RequestUserCreate } from '../request/user';
 
 @Controller('users')
@@ -22,7 +22,7 @@ export class ControllerUser {
   @Get()
   @HttpCode(HttpStatus.OK)
   public async index() {
-    const usecase = new FindUserUseCase(this.repositoryUser);
+    const usecase = new UseCaseUserFind(this.repositoryUser);
     const domainUsers = await usecase.getAll();
     return this.responseUser.index(domainUsers);
   }
@@ -30,7 +30,7 @@ export class ControllerUser {
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   public async show(@Param('id') id: string) {
-    const usecase = new FindUserUseCase(this.repositoryUser);
+    const usecase = new UseCaseUserFind(this.repositoryUser);
     const domainUser = await usecase.getById(id);
     return this.responseUser.show(domainUser);
   }
@@ -38,8 +38,7 @@ export class ControllerUser {
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
   public async create(@Body() body: RequestUserCreate) {
-    console.log(body);
-    const usecase = new FindUserUseCase(this.repositoryUser);
+    const usecase = new UseCaseUserCreate(this.repositoryUser);
     await usecase.create(body.name, body.age);
   }
 }
