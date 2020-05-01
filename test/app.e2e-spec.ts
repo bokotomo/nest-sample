@@ -26,7 +26,7 @@ describe('users', () => {
   });
 
   it('create', async () => {
-    // DBクエリなど
+    // モックは使わず、DBクエリなど追加する
     const res = await request(app.getHttpServer())
       .post('/users/create')
       .send({

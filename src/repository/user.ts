@@ -11,21 +11,21 @@ export class RepositoryUser implements IRepositoryUser {
     private repositoryUser: Repository<User>,
   ) {}
 
-  public async create(name: string, age: number) {
+  public async create(domainUser: DomainUser) {
     const user = new User();
     // user.id = 'unique_id';
-    user.name = name;
-    user.age = age;
+    user.name = domainUser.name();
+    user.age = domainUser.age();
     await this.repositoryUser.save(user);
   }
 
   public async findAll(): Promise<DomainUser[]> {
     const users = (await this.repositoryUser.find()) as User[];
-    return users.map(user => new DomainUser(user.id, user.name));
+    return users.map(user => new DomainUser(user.id, user.name, user.age));
   }
 
   public async findById(id: string): Promise<DomainUser> {
     const user = (await this.repositoryUser.findOne(id)) as User;
-    return new DomainUser(user.id, user.name);
+    return new DomainUser(user.id, user.name, user.age);
   }
 }

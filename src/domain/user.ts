@@ -1,11 +1,9 @@
 export class DomainUser {
-  private readonly _id: string;
-  private readonly _name: string;
-
-  constructor(id: string, name: string) {
-    this._id = id;
-    this._name = name;
-  }
+  constructor(
+    private readonly _id: string,
+    private readonly _name: string,
+    private readonly _age: number,
+  ) {}
 
   public id(): string {
     return this._id;
@@ -13,5 +11,9 @@ export class DomainUser {
 
   public name(): string {
     return this._name;
+  }
+
+  public age(): number {
+    return this._age;
   }
 }

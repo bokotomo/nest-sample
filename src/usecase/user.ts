@@ -28,7 +28,7 @@ export class UseCaseUserCreate {
     this.iRepositoryUser = repositoryUser;
   }
 
-  public create(name: string, age: number) {
-    return this.iRepositoryUser.create(name, age);
+  public create(domainUser: DomainUser) {
+    return this.iRepositoryUser.create(domainUser);
   }
 }
