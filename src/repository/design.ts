@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Design } from '../entity/design';
 import { DomainDesign } from '../domain/design';
@@ -25,6 +25,9 @@ export class RepositoryDesign implements IRepositoryDesign {
 
   public async findById(id: string): Promise<DomainDesign> {
     const design = (await this.repositoryDesign.findOne(id)) as Design;
+    // errはreturnで返した方が良さそうだけど、迷う
+    if (!design)
+      throw new HttpException('not found design: ' + id, HttpStatus.FORBIDDEN);
     return new DomainDesign(design.id, design.title);
   }
 }

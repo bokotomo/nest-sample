@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { DomainUser } from '../domain/user';
 import { Repository } from 'typeorm';
 import { User } from '../entity/user';
@@ -25,7 +25,10 @@ export class RepositoryUser implements IRepositoryUser {
   }
 
   public async findById(id: string): Promise<DomainUser> {
-    const user = (await this.repositoryUser.findOne(id)) as User;
+    const user = await this.repositoryUser.findOne(id);
+    // errはreturnで返した方が良さそうだけど、迷う
+    if (!user)
+      throw new HttpException('not found user: ' + id, HttpStatus.FORBIDDEN);
     return new DomainUser(user.id, user.name, user.age);
   }
 }
