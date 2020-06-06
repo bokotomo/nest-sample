@@ -1,5 +1,7 @@
 # nest api sample
 
+[構成２](https://github.com/bokotomo/nest-sample/tree/pattern2/src)
+
 ## 使い方
 
 ### DB
