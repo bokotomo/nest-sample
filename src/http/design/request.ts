@@ -1,6 +1,6 @@
 import { IsNotEmpty, MinLength, MaxLength, IsString } from 'class-validator';
 
-export class RequestDesignCreate {
+export class RequestCreate {
   @IsNotEmpty()
   @IsString()
   @MinLength(5)

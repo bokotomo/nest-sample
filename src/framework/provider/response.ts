@@ -1,4 +1,4 @@
-import { ResponseUser } from '../../adapter/response/user';
-import { ResponseDesign } from '../../adapter/response/design';
+import { ResponseUser } from '../../http/user/adapter';
+import { ResponseDesign } from '../../http/design/adapter';
 
 export const providerResponses = [ResponseUser, ResponseDesign];

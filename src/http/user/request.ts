@@ -7,7 +7,7 @@ import {
   IsPositive,
 } from 'class-validator';
 
-export class RequestUserCreate {
+export class RequestCreate {
   @IsNotEmpty()
   @IsString()
   @MinLength(5)
