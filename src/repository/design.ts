@@ -8,7 +8,7 @@ import { IRepositoryDesign } from '../usecase/port/design';
 export class RepositoryDesign implements IRepositoryDesign {
   constructor(
     @Inject('DESIGN_REPOSITORY')
-    private repositoryDesign: Repository<Design>,
+    private readonly repositoryDesign: Repository<Design>,
   ) {}
 
   public async create(title: string) {
@@ -19,7 +19,7 @@ export class RepositoryDesign implements IRepositoryDesign {
   }
 
   public async findAll(): Promise<DomainDesign[]> {
-    const designs = (await this.repositoryDesign.find()) as Design[];
+    const designs = await this.repositoryDesign.find();
     return designs.map(design => new DomainDesign(design.id, design.title));
   }
 

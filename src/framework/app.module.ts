@@ -9,7 +9,7 @@ import { providerAdapterDomains } from './provider/adapterDomain';
 import { providerControllers } from './provider/controller';
 
 const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
-const envFilePath = __dirname + '/../../env/' + envFile;
+const envFilePath = './env/' + envFile;
 
 @Module({
   imports: [ConfigModule.forRoot({ envFilePath, isGlobal: true })],

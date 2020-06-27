@@ -8,7 +8,7 @@ import { IRepositoryUser } from '../usecase/port/user';
 export class RepositoryUser implements IRepositoryUser {
   constructor(
     @Inject('USER_REPOSITORY')
-    private repositoryUser: Repository<User>,
+    private readonly repositoryUser: Repository<User>,
   ) {}
 
   public async create(domainUser: DomainUser) {
@@ -20,7 +20,7 @@ export class RepositoryUser implements IRepositoryUser {
   }
 
   public async findAll(): Promise<DomainUser[]> {
-    const users = (await this.repositoryUser.find()) as User[];
+    const users = await this.repositoryUser.find();
     return users.map(user => new DomainUser(user.id, user.name, user.age));
   }
 
