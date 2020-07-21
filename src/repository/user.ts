@@ -1,4 +1,10 @@
-import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Injectable,
+  Inject,
+  HttpException,
+  HttpStatus,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { DomainUser } from '../domain/user';
 import { Repository } from 'typeorm';
 import { User } from '../entity/user';
@@ -40,7 +46,12 @@ export class RepositoryUser implements IRepositoryUser {
     return new DomainUser(user.id, user.name, user.age, user.email, '');
   }
 
-  public async login(email: string, password: string): Promise<boolean> {
-    return false;
+  public async login(email: string, password: string): Promise<DomainUser> {
+    const user = await this.repositoryUser.findOne({
+      where: { email, password },
+    });
+    // [TODO]: 良くはない
+    if (!user) throw new UnauthorizedException();
+    return new DomainUser(user.id, user.name, user.age, user.email, '');
   }
 }
