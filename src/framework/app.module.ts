@@ -21,7 +21,7 @@ const envFilePath = './env/' + envFile;
     PassportModule,
     JwtModule.register({
       privateKey,
-      signOptions: { expiresIn: '3m', algorithm: 'RS256' },
+      signOptions: { expiresIn: '30m', algorithm: 'RS256' },
     }),
   ],
   controllers: providerControllers,
