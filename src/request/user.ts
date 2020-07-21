@@ -18,4 +18,16 @@ export class RequestUserCreate {
   @IsNumber()
   @IsPositive()
   readonly age: number;
+
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(5)
+  @MaxLength(30)
+  readonly email: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(5)
+  @MaxLength(30)
+  readonly password: string;
 }

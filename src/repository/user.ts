@@ -11,17 +11,25 @@ export class RepositoryUser implements IRepositoryUser {
     private readonly repositoryUser: Repository<User>,
   ) {}
 
+  private createHash(v: string): string {
+    // TODO: Hash
+    return v;
+  }
+
   public async create(domainUser: DomainUser) {
     const user = new User();
-    // user.id = 'unique_id';
     user.name = domainUser.name();
     user.age = domainUser.age();
+    user.email = domainUser.email();
+    user.password = this.createHash(domainUser.password());
     await this.repositoryUser.save(user);
   }
 
   public async findAll(): Promise<DomainUser[]> {
     const users = await this.repositoryUser.find();
-    return users.map(user => new DomainUser(user.id, user.name, user.age));
+    return users.map(
+      user => new DomainUser(user.id, user.name, user.age, user.email, ''),
+    );
   }
 
   public async findById(id: string): Promise<DomainUser> {
@@ -29,6 +37,10 @@ export class RepositoryUser implements IRepositoryUser {
     // errはreturnで返した方が良さそうだけど、迷う
     if (!user)
       throw new HttpException('not found user: ' + id, HttpStatus.FORBIDDEN);
-    return new DomainUser(user.id, user.name, user.age);
+    return new DomainUser(user.id, user.name, user.age, user.email, '');
+  }
+
+  public async login(email: string, password: string): Promise<boolean> {
+    return false;
   }
 }

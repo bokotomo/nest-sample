@@ -17,6 +17,10 @@ docker-compose up -d
 ### API
 
 ```
+cd ./env
+cp develop.env .env
+cd ../
+
 npm run start
 ```
 
