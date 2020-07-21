@@ -6,10 +6,12 @@ import {
   Param,
   HttpCode,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { ResponseDesign } from '../adapter/response/design';
 import { UseCaseDesignFind, UseCaseDesignCreate } from '../usecase/design';
 import { RequestDesignCreate } from '../request/design';
+import { JwtAuthGuard } from '../service/jwt-auth.guard';
 
 @Controller('designs')
 export class ControllerDesign {
@@ -19,6 +21,7 @@ export class ControllerDesign {
     private readonly useCaseDesignCreate: UseCaseDesignCreate,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   @HttpCode(HttpStatus.OK)
   public async index() {
@@ -26,6 +29,7 @@ export class ControllerDesign {
     return this.response.index(domainDesigns);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   public async show(@Param('id') id: string) {
@@ -33,6 +37,7 @@ export class ControllerDesign {
     return this.response.show(domainDesign);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
   public async create(@Body() body: RequestDesignCreate) {

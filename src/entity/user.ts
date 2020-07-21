@@ -10,4 +10,10 @@ export class User {
 
   @Column({ type: 'int', nullable: false, unsigned: true })
   age: number;
+
+  @Column({ nullable: false, length: 50 })
+  email: string;
+
+  @Column({ nullable: false, length: 50 })
+  password: string;
 }
