@@ -1,6 +1,10 @@
 # basic
 .env
 
+# key
+jwt
+jwt.pub
+
 # compiled output
 /dist
 /node_modules

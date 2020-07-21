@@ -24,6 +24,13 @@ cd ../
 npm run start
 ```
 
+### ceate key
+
+```
+ssh-keygen -t rsa -b 4096 -m PEM -o name
+ssh-keygen -f name.pub -e -m pem > name.pub_
+```
+
 ### SMPLE
 
 ```

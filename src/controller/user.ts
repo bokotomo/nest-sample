@@ -6,11 +6,13 @@ import {
   Body,
   HttpStatus,
   HttpCode,
+  UseGuards,
 } from '@nestjs/common';
 import { ResponseUser } from '../adapter/response/user';
 import { AdapterDomainUser } from '../adapter/domain/user';
 import { UseCaseUserFind, UseCaseUserCreate } from '../usecase/user';
 import { RequestUserCreate } from '../request/user';
+import { JwtAuthGuard } from '../service/jwt-auth.guard';
 
 @Controller('users')
 export class ControllerUser {
@@ -21,6 +23,7 @@ export class ControllerUser {
     private readonly adapterDomain: AdapterDomainUser,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   @HttpCode(HttpStatus.OK)
   public async index() {
@@ -28,6 +31,7 @@ export class ControllerUser {
     return this.response.index(domainUsers);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   public async show(@Param('id') id: string) {
@@ -35,6 +39,7 @@ export class ControllerUser {
     return this.response.show(domainUser);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
   public async create(@Body() body: RequestUserCreate) {
