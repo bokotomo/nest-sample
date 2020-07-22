@@ -10,7 +10,7 @@ import { providerUseCases } from './provider/usecase';
 import { providerAdapterDomains } from './provider/adapterDomain';
 import { providerControllers } from './provider/controller';
 import { JwtStrategy } from '../service/jwt.strategy';
-import { privateKey } from '../service/jwt';
+import { privateKey, publickKey } from '../service/jwt';
 
 const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 const envFilePath = './env/' + envFile;
@@ -20,6 +20,7 @@ const envFilePath = './env/' + envFile;
     ConfigModule.forRoot({ envFilePath, isGlobal: true }),
     PassportModule,
     JwtModule.register({
+      publicKey: publickKey,
       privateKey,
       signOptions: { expiresIn: '30m', algorithm: 'RS256' },
     }),

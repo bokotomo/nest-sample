@@ -6,6 +6,13 @@ import { RequestUserCreate } from '../../request/user';
 @Injectable()
 export class AdapterDomainUser {
   public create(body: RequestUserCreate): DomainUser {
-    return new DomainUser('', body.name, body.age, body.email, body.password);
+    return new DomainUser(
+      '',
+      body.name,
+      body.age,
+      body.email,
+      body.password,
+      body.role,
+    );
   }
 }

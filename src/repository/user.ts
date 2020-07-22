@@ -28,13 +28,15 @@ export class RepositoryUser implements IRepositoryUser {
     user.age = domainUser.age();
     user.email = domainUser.email();
     user.password = this.createHash(domainUser.password());
+    user.role = domainUser.role();
     await this.repositoryUser.save(user);
   }
 
   public async findAll(): Promise<DomainUser[]> {
     const users = await this.repositoryUser.find();
     return users.map(
-      user => new DomainUser(user.id, user.name, user.age, user.email, ''),
+      user =>
+        new DomainUser(user.id, user.name, user.age, user.email, '', user.role),
     );
   }
 
@@ -43,7 +45,14 @@ export class RepositoryUser implements IRepositoryUser {
     // errはreturnで返した方が良さそうだけど、迷う
     if (!user)
       throw new HttpException('not found user: ' + id, HttpStatus.FORBIDDEN);
-    return new DomainUser(user.id, user.name, user.age, user.email, '');
+    return new DomainUser(
+      user.id,
+      user.name,
+      user.age,
+      user.email,
+      '',
+      user.role,
+    );
   }
 
   public async login(email: string, password: string): Promise<DomainUser> {
@@ -52,6 +61,6 @@ export class RepositoryUser implements IRepositoryUser {
     });
     // [TODO]: 良くはない
     if (!user) throw new UnauthorizedException();
-    return new DomainUser(user.id, user.name, user.age, user.email, '');
+    return new DomainUser(user.id, '', 0, user.email, '', user.role);
   }
 }

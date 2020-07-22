@@ -13,6 +13,8 @@ import { AdapterDomainUser } from '../adapter/domain/user';
 import { UseCaseUserFind, UseCaseUserCreate } from '../usecase/user';
 import { RequestUserCreate } from '../request/user';
 import { JwtAuthGuard } from '../service/jwt-auth.guard';
+import { Roles } from '../service/roles.decorator';
+import { RolesGuard } from '../service/roles.guard';
 
 @Controller('users')
 export class ControllerUser {
@@ -39,7 +41,8 @@ export class ControllerUser {
     return this.response.show(domainUser);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Roles('admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
   public async create(@Body() body: RequestUserCreate) {

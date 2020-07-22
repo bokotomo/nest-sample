@@ -15,6 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(claim: DomainJWTClaim): Promise<DomainClaim> {
-    return { id: claim.sub, email: claim.email };
+    return { id: claim.sub, email: claim.email, role: claim.role };
   }
 }
