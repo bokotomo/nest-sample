@@ -30,4 +30,10 @@ export class RequestUserCreate {
   @MinLength(5)
   @MaxLength(30)
   readonly password: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(1)
+  @MaxLength(10)
+  readonly role: string;
 }

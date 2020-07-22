@@ -5,6 +5,7 @@ export class DomainUser {
     private readonly _age: number,
     private readonly _email: string,
     private readonly _password: string,
+    private readonly _role: string,
   ) {}
 
   public id(): string {
@@ -25,5 +26,9 @@ export class DomainUser {
 
   public password(): string {
     return this._password;
+  }
+
+  public role(): string {
+    return this._role;
   }
 }

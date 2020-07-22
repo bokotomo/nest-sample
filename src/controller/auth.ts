@@ -25,7 +25,11 @@ export class ControllerAuth {
   @HttpCode(HttpStatus.OK)
   public async login(@Body() body: RequestLogin) {
     const user = await this.repository.login(body.email, body.password);
-    const claim: DomainJWTClaim = { email: user.email(), sub: user.id() };
+    const claim: DomainJWTClaim = {
+      email: user.email(),
+      sub: user.id(),
+      role: user.role(),
+    };
     const token = this.jwtService.sign(claim);
     return { token };
   }
