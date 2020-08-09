@@ -19,6 +19,7 @@ docker-compose up -d
 ```
 cd ./env
 cp develop.env .env
+cp test.env .env.test
 cd ../
 
 npm run start
