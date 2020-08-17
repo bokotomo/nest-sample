@@ -9,12 +9,7 @@ export class Helper {
     private readonly app: INestApplication,
     private readonly conn: Connection,
   ) {}
-
   token: string;
-
-  async close() {
-    await this.app.close();
-  }
 
   async trancateAll() {
     await this.conn.query('TRUNCATE table user');
