@@ -9,11 +9,9 @@ export class Helper {
     private readonly app: INestApplication,
     private readonly conn: Connection,
   ) {}
-
   token: string;
 
   async trancateAll() {
-    // TODO 非同期なので、他のテスト中に実行されるのでエラーする
     await this.conn.query('TRUNCATE table user');
     await this.conn.query('TRUNCATE table design');
   }
@@ -54,10 +52,6 @@ export class Helper {
       .send(data);
   }
 
-  delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
   async insertUser(
     name: string,
     email: string,
@@ -71,13 +65,11 @@ export class Helper {
     u.password = password;
     u.role = role;
     await this.conn.getRepository(User).insert(u);
-    // await this.delay(1000);
   }
 
   async insertDesign(title: string) {
     const d = new Design();
     d.title = title;
     await this.conn.getRepository(Design).insert(d);
-    // await this.delay(1000);
   }
 }
