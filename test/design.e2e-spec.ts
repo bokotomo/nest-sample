@@ -3,14 +3,15 @@ import { Setup } from './helper/setup';
 
 describe('design', () => {
   let helper: Helper;
+  let setup: Setup;
 
   beforeAll(async () => {
-    const setup = new Setup();
+    setup = new Setup();
     helper = await setup.setup();
   });
 
   afterAll(async () => {
-    await helper.close();
+    await setup.close();
   });
 
   afterEach(async () => {
