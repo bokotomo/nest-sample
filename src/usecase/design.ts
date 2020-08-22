@@ -11,12 +11,12 @@ export class UseCaseDesignFind {
     this.iRepositoryDesign = repositoryDesign;
   }
 
-  public getAll(): Promise<DomainDesign[]> {
-    return this.iRepositoryDesign.findAll();
+  public async getAll(): Promise<DomainDesign[]> {
+    return await this.iRepositoryDesign.findAll();
   }
 
-  public getById(id: string): Promise<DomainDesign> {
-    return this.iRepositoryDesign.findById(id);
+  public async getById(id: string): Promise<DomainDesign> {
+    return await this.iRepositoryDesign.findById(id);
   }
 }
 
@@ -28,7 +28,7 @@ export class UseCaseDesignCreate {
     this.iRepositoryDesign = repositoryDesign;
   }
 
-  public create(title: string) {
-    return this.iRepositoryDesign.create(title);
+  public create(title: string): void {
+    this.iRepositoryDesign.create(title);
   }
 }

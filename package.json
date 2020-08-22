@@ -12,7 +12,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint-fix": "npm run format && npm run eslint-fix",
-    "lint": "eslint --ext .js,.ts src --color",
+    "lint": "eslint --ext .js,.ts \"src/**/*.ts\" \"test/**/*.ts\" --color",
     "eslint-fix": "eslint --fix \"src/**/*.ts\" \"test/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "test": "jest",

@@ -11,7 +11,7 @@ export class RepositoryDesign implements IRepositoryDesign {
     private readonly repositoryDesign: Repository<Design>,
   ) {}
 
-  public async create(title: string) {
+  public async create(title: string): Promise<void> {
     const design = new Design();
     // user.id = 'unique_id';
     design.title = title;
@@ -24,7 +24,7 @@ export class RepositoryDesign implements IRepositoryDesign {
   }
 
   public async findById(id: string): Promise<DomainDesign> {
-    const design = (await this.repositoryDesign.findOne(id)) as Design;
+    const design = await this.repositoryDesign.findOne(id);
     // errはreturnで返した方が良さそうだけど、迷う
     if (!design)
       throw new HttpException('not found design: ' + id, HttpStatus.FORBIDDEN);

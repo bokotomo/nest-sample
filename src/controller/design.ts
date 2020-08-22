@@ -25,14 +25,14 @@ export class ControllerDesign {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  public async index() {
+  public async index(): Promise<object> {
     const domainDesigns = await this.useCaseDesignFind.getAll();
     return this.response.index(domainDesigns);
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  public async show(@Param('id') id: string) {
+  public async show(@Param('id') id: string): Promise<object> {
     const domainDesign = await this.useCaseDesignFind.getById(id);
     return this.response.show(domainDesign);
   }
@@ -41,7 +41,7 @@ export class ControllerDesign {
   @Roles('admin')
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
-  public async create(@Body() body: RequestDesignCreate) {
+  public async create(@Body() body: RequestDesignCreate): Promise<void> {
     await this.useCaseDesignCreate.create(body.title);
   }
 }
