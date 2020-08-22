@@ -1,40 +1,32 @@
-import { Helper } from './helper/common';
-import { Setup } from './helper/setup';
+import { Helper } from './helper/helper';
+import { Role } from './helper/constant';
 
 describe('user', () => {
-  let helper: Helper;
-  let setup: Setup;
+  const helper = new Helper();
 
-  beforeAll(async () => {
-    setup = new Setup();
-    helper = await setup.setup();
-  });
+  beforeAll(async () => await helper.setup());
 
-  afterAll(async () => {
-    await setup.close();
-  });
+  afterAll(async () => await helper.close());
 
-  afterEach(async () => {
-    await helper.trancateAll();
-  });
+  afterEach(async () => await helper.repository.trancateAll());
 
   it('ユーザの詳細を返す', async () => {
-    await helper.insertUser('name', 'email', '', '');
-    const res = await helper.get('/users/1', {}, true);
+    await helper.repository.insertUser('name', 'email', '', '');
+    const res = await helper.request.get('/users/1', Role.Normal, {});
     expect(res.body).toEqual({ id: 1, name: 'name' });
     expect(res.status).toEqual(200);
   });
 
   it('該当するユーザが無い', async () => {
-    const res = await helper.get('/users/1', {}, true);
+    const res = await helper.request.get('/users/1', Role.Normal, {});
     expect(res.body).toEqual({ message: 'not found user: 1', statusCode: 403 });
     expect(res.status).toEqual(403);
   });
 
   it('ユーザの一覧を返す', async () => {
-    await helper.insertUser('name1', 'email', '', '');
-    await helper.insertUser('name2', 'email', '', '');
-    const res = await helper.get('/users', {}, true);
+    await helper.repository.insertUser('name1', 'email', '', '');
+    await helper.repository.insertUser('name2', 'email', '', '');
+    const res = await helper.request.get('/users', Role.Normal, {});
     expect(res.body).toEqual([
       { id: 1, name: 'name1' },
       { id: 2, name: 'name2' },
@@ -43,17 +35,13 @@ describe('user', () => {
   });
 
   it('ユーザの作成をする', async () => {
-    const res = await helper.post(
-      '/users/create',
-      {
-        name: 'name1',
-        age: 10,
-        email: 'a@a.a',
-        password: 'password1',
-        role: 'admin',
-      },
-      true,
-    );
+    const res = await helper.request.post('/users/create', Role.Normal, {
+      name: 'name1',
+      age: 10,
+      email: 'a@a.a',
+      password: 'password1',
+      role: 'admin',
+    });
     expect(res.status).toEqual(201);
     // TODO: レコードのチェックもする
   });
