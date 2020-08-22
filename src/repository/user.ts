@@ -22,7 +22,7 @@ export class RepositoryUser implements IRepositoryUser {
     return v;
   }
 
-  public async create(domainUser: DomainUser) {
+  public async create(domainUser: DomainUser): Promise<void> {
     const user = new User();
     user.name = domainUser.name();
     user.age = domainUser.age();

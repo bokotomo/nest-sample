@@ -12,7 +12,7 @@ import { JwtService } from '@nestjs/jwt';
 import { RepositoryUser } from '../repository/user';
 import { RequestLogin } from '../request/auth';
 import { JwtAuthGuard } from '../service/jwt-auth.guard';
-import { DomainRequest, DomainJWTClaim } from '../domain/claim';
+import { DomainRequest, DomainJWTClaim, DomainClaim } from '../domain/claim';
 
 @Controller('auth')
 export class ControllerAuth {
@@ -23,7 +23,7 @@ export class ControllerAuth {
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  public async login(@Body() body: RequestLogin) {
+  public async login(@Body() body: RequestLogin): Promise<object> {
     const user = await this.repository.login(body.email, body.password);
     const claim: DomainJWTClaim = {
       email: user.email(),
@@ -37,7 +37,7 @@ export class ControllerAuth {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   @HttpCode(HttpStatus.OK)
-  getProfile(@Request() req: DomainRequest) {
+  getProfile(@Request() req: DomainRequest): DomainClaim {
     return req.user;
   }
 }

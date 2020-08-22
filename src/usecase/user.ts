@@ -11,12 +11,12 @@ export class UseCaseUserFind {
     this.iRepositoryUser = repositoryUser;
   }
 
-  public getAll(): Promise<DomainUser[]> {
-    return this.iRepositoryUser.findAll();
+  public async getAll(): Promise<DomainUser[]> {
+    return await this.iRepositoryUser.findAll();
   }
 
-  public getById(id: string): Promise<DomainUser> {
-    return this.iRepositoryUser.findById(id);
+  public async getById(id: string): Promise<DomainUser> {
+    return await this.iRepositoryUser.findById(id);
   }
 }
 
@@ -28,7 +28,7 @@ export class UseCaseUserCreate {
     this.iRepositoryUser = repositoryUser;
   }
 
-  public create(domainUser: DomainUser) {
-    return this.iRepositoryUser.create(domainUser);
+  public create(domainUser: DomainUser): void {
+    this.iRepositoryUser.create(domainUser);
   }
 }

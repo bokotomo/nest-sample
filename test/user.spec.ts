@@ -1,5 +1,6 @@
 import { Helper } from './helper/helper';
 import { Role } from './helper/constant';
+import { User } from '../src/entity/user';
 
 describe('user', () => {
   const helper = new Helper();
@@ -11,7 +12,13 @@ describe('user', () => {
   afterEach(async () => await helper.repository.trancateAll());
 
   it('ユーザの詳細を返す', async () => {
-    await helper.repository.insertUser('name', 'email', '', '');
+    const u = new User();
+    u.name = 'name';
+    u.email = 'email';
+    u.password = '';
+    u.role = '';
+    u.age = 0;
+    await helper.repository.insertUser([u]);
     const res = await helper.request.get('/users/1', Role.Normal, {});
     expect(res.body).toEqual({ id: 1, name: 'name' });
     expect(res.status).toEqual(200);
@@ -24,8 +31,19 @@ describe('user', () => {
   });
 
   it('ユーザの一覧を返す', async () => {
-    await helper.repository.insertUser('name1', 'email', '', '');
-    await helper.repository.insertUser('name2', 'email', '', '');
+    const u = new User();
+    u.name = 'name1';
+    u.email = 'email1';
+    u.password = '';
+    u.role = '';
+    u.age = 0;
+    const u2 = new User();
+    u2.name = 'name2';
+    u2.email = 'email2';
+    u2.password = '';
+    u2.role = '';
+    u2.age = 0;
+    await helper.repository.insertUser([u, u2]);
     const res = await helper.request.get('/users', Role.Normal, {});
     expect(res.body).toEqual([
       { id: 1, name: 'name1' },

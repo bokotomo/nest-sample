@@ -28,7 +28,7 @@ export class ControllerUser {
   @UseGuards(JwtAuthGuard)
   @Get()
   @HttpCode(HttpStatus.OK)
-  public async index() {
+  public async index(): Promise<object> {
     const domainUsers = await this.useCaseUserFind.getAll();
     return this.response.index(domainUsers);
   }
@@ -36,7 +36,7 @@ export class ControllerUser {
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  public async show(@Param('id') id: string) {
+  public async show(@Param('id') id: string): Promise<object> {
     const domainUser = await this.useCaseUserFind.getById(id);
     return this.response.show(domainUser);
   }
@@ -45,7 +45,7 @@ export class ControllerUser {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('create')
   @HttpCode(HttpStatus.CREATED)
-  public async create(@Body() body: RequestUserCreate) {
+  public async create(@Body() body: RequestUserCreate): Promise<void> {
     // 以下の adapterDomain は過剰に役割を分離させてる。
     // const domainUser = new DomainUser('', body.name, body.age)でもおk
     const domainUser = this.adapterDomain.create(body);

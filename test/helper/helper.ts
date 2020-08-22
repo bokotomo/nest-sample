@@ -4,6 +4,7 @@ import { Connection } from 'typeorm';
 import { AppModule } from '../../src/framework/app.module';
 import { HttpRequest } from './request';
 import { Repository } from './repository';
+import { User } from '../../src/entity/user';
 
 export class Helper {
   private app: INestApplication;
@@ -25,7 +26,13 @@ export class Helper {
   }
 
   private async setupToken(): Promise<string> {
-    await this.repository.insertUser('', 'email', 'password1', 'admin');
+    const u = new User();
+    u.name = '';
+    u.email = 'email';
+    u.password = 'password1';
+    u.role = 'admin';
+    u.age = 0;
+    await this.repository.insertUser([u]);
     const res = await this.request.postNotAuth('/auth/login', {
       email: 'email',
       password: 'password1',
@@ -40,7 +47,8 @@ export class Helper {
     this.repository = new Repository(this.conn);
     this.request = new HttpRequest(this.app.getHttpServer(), '');
     const token = await this.setupToken();
-    this.request.setToken(token, '');
+    const tokenAdmin = await this.setupToken();
+    await this.request.setToken(token, tokenAdmin);
   }
 
   async close(): Promise<void> {

@@ -39,3 +39,11 @@ curl -X GET http://localhost:3001/users
 curl -X GET http://localhost:3001/users/1
 curl -X POST http://localhost:3001/users/create -d 'name=boko' -d 'age=11'
 ```
+
+### test
+
+本当は entity に依存させるべきではないが今回は使ってる。
+
+```
+npm run test:e2e
+```
