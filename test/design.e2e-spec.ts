@@ -1,32 +1,24 @@
-import { Helper } from './helper/common';
-import { Setup } from './helper/setup';
+import { Helper } from './helper/helper';
+import { Role } from './helper/constant';
 
 describe('design', () => {
-  let helper: Helper;
-  let setup: Setup;
+  const helper = new Helper();
 
-  beforeAll(async () => {
-    setup = new Setup();
-    helper = await setup.setup();
-  });
+  beforeAll(async () => await helper.setup());
 
-  afterAll(async () => {
-    await setup.close();
-  });
+  afterAll(async () => await helper.close());
 
-  afterEach(async () => {
-    await helper.trancateAll();
-  });
+  afterEach(async () => await helper.repository.trancateAll());
 
   it('designの詳細を返す', async () => {
-    await helper.insertDesign('title');
-    const res = await helper.get('/designs/1', {}, true);
+    await helper.repository.insertDesign('title');
+    const res = await helper.request.get('/designs/1', Role.Normal, {});
     expect(res.body).toEqual({ id: 1 });
     expect(res.status).toEqual(200);
   });
 
   it('該当するdesignが無い', async () => {
-    const res = await helper.get('/designs/1', {}, true);
+    const res = await helper.request.get('/designs/1', Role.Normal, {});
     expect(res.body).toEqual({
       message: 'not found design: 1',
       statusCode: 403,
@@ -35,9 +27,9 @@ describe('design', () => {
   });
 
   it('designの一覧を返す', async () => {
-    await helper.insertDesign('title1');
-    await helper.insertDesign('title2');
-    const res = await helper.get('/designs', {}, true);
+    await helper.repository.insertDesign('title1');
+    await helper.repository.insertDesign('title2');
+    const res = await helper.request.get('/designs', Role.Normal, {});
     expect(res.body).toEqual([
       { id: 1, name: 'title1' },
       { id: 2, name: 'title2' },
@@ -46,7 +38,9 @@ describe('design', () => {
   });
 
   it('designの作成をする', async () => {
-    const res = await helper.post('/designs/create', { title: 'title1' }, true);
+    const res = await helper.request.post('/designs/create', Role.Normal, {
+      title: 'title1',
+    });
     expect(res.status).toEqual(201);
     // TODO: レコードのチェックもする
   });
