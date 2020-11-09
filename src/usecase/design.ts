@@ -28,7 +28,7 @@ export class UseCaseDesignCreate {
     this.iRepositoryDesign = repositoryDesign;
   }
 
-  public create(title: string): void {
-    this.iRepositoryDesign.create(title);
+  public async create(title: string): Promise<void> {
+    await this.iRepositoryDesign.create(title);
   }
 }

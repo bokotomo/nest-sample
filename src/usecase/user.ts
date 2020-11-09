@@ -28,7 +28,7 @@ export class UseCaseUserCreate {
     this.iRepositoryUser = repositoryUser;
   }
 
-  public create(domainUser: DomainUser): void {
-    this.iRepositoryUser.create(domainUser);
+  public async create(domainUser: DomainUser): Promise<void> {
+    await this.iRepositoryUser.create(domainUser);
   }
 }

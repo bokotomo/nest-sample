@@ -22,6 +22,9 @@ export class RepositoryUser implements IRepositoryUser {
     return v;
   }
 
+  /**
+   * 追加する
+   */
   public async create(domainUser: DomainUser): Promise<void> {
     const user = new User();
     user.name = domainUser.name();
@@ -32,6 +35,9 @@ export class RepositoryUser implements IRepositoryUser {
     await this.repositoryUser.save(user);
   }
 
+  /**
+   * 全て取得
+   */
   public async findAll(): Promise<DomainUser[]> {
     const users = await this.repositoryUser.find();
     return users.map(
@@ -40,6 +46,9 @@ export class RepositoryUser implements IRepositoryUser {
     );
   }
 
+  /**
+   * idで検索
+   */
   public async findById(id: string): Promise<DomainUser> {
     const user = await this.repositoryUser.findOne(id);
     // errはreturnで返した方が良さそうだけど、迷う
@@ -55,6 +64,9 @@ export class RepositoryUser implements IRepositoryUser {
     );
   }
 
+  /**
+   * loginチェック
+   */
   public async login(email: string, password: string): Promise<DomainUser> {
     const user = await this.repositoryUser.findOne({
       where: { email, password },
