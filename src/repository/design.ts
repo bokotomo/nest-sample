@@ -26,7 +26,7 @@ export class RepositoryDesign implements IRepositoryDesign {
    */
   public async findAll(): Promise<DomainDesign[]> {
     const designs = await this.repositoryDesign.find();
-    return designs.map(design => new DomainDesign(design.id, design.title));
+    return designs.map((design) => new DomainDesign(design.id, design.title));
   }
 
   /**

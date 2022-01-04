@@ -41,7 +41,7 @@ export class RepositoryUser implements IRepositoryUser {
   public async findAll(): Promise<DomainUser[]> {
     const users = await this.repositoryUser.find();
     return users.map(
-      user =>
+      (user) =>
         new DomainUser(user.id, user.name, user.age, user.email, '', user.role),
     );
   }

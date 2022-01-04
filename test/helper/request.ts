@@ -62,10 +62,7 @@ export class HttpRequest {
   ): Promise<request.Response> {
     const header = this.getHeader(role);
     const path = `${this.basePath}${url}`;
-    return await request(this.host)
-      .get(path)
-      .set(header)
-      .send(query);
+    return await request(this.host).get(path).set(header).send(query);
   }
 
   async post(
@@ -75,10 +72,7 @@ export class HttpRequest {
   ): Promise<request.Response> {
     const header = this.getHeader(role);
     const path = `${this.basePath}${url}`;
-    return await request(this.host)
-      .post(path)
-      .set(header)
-      .send(data);
+    return await request(this.host).post(path).set(header).send(data);
   }
 
   async put(
@@ -88,10 +82,7 @@ export class HttpRequest {
   ): Promise<request.Response> {
     const header = this.getHeader(role);
     const path = `${this.basePath}${url}`;
-    return await request(this.host)
-      .put(path)
-      .set(header)
-      .send(data);
+    return await request(this.host).put(path).set(header).send(data);
   }
 
   async delete(
@@ -101,9 +92,6 @@ export class HttpRequest {
   ): Promise<request.Response> {
     const header = this.getHeader(role);
     const path = `${this.basePath}${url}`;
-    return await request(this.host)
-      .delete(path)
-      .set(header)
-      .send(data);
+    return await request(this.host).delete(path).set(header).send(data);
   }
 }

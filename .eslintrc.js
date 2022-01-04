@@ -8,6 +8,7 @@ module.exports = {
   rules: {
     'no-path-concat': 'error',
     'no-var': 'error',
+    'node/no-path-concat':'off',
     '@typescript-eslint/promise-function-async': 'error',
     '@typescript-eslint/method-signature-style': 'off',
     '@typescript-eslint/member-delimiter-style': 'off',

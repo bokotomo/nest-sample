@@ -1,8 +1,9 @@
-version: '3.7'
+version: '3.8'
 services:
-  nest-sample-db:
-    image: mysql:8.0.17
-    container_name: nest-sample-db
+  nest-js-sample-db:
+    image: mysql:8.0.27
+    platform: linux/x86_64
+    container_name: nest-js-sample-db
     ports:
       - '3388:3306'
     environment:
@@ -14,4 +15,4 @@ services:
 networks:
   default:
     external:
-      name: nest-sample
+      name: nest-js-sample

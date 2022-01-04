@@ -4,7 +4,7 @@ import { DomainUser } from '../../domain/user';
 @Injectable()
 export class ResponseUser {
   public index(users: DomainUser[]): object {
-    return users.map(user => {
+    return users.map((user) => {
       return { id: user.id(), name: user.name() };
     });
   }

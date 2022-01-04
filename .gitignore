@@ -3,8 +3,8 @@
 .env.test
 
 # key
-jwt
-jwt.pub
+sample_jwt
+sample_jwt.pub
 
 # compiled output
 /dist

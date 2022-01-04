@@ -1,35 +1,45 @@
 # nest api sample
 
-[構成２。こっちの方が良さそう](https://github.com/bokotomo/nest-sample/tree/pattern2/src)
+nestjs の API のサンプル
 
 ## 使い方
 
-### DB
+### STEP.1 DB
 
 ```
-docker network create nest-sample
-
 cd ./infrastructure/docker
 
 docker-compose up -d
+
+cd ../../
 ```
 
-### API
+### STEP.2 .ENV
 
 ```
 cd ./env
 cp develop.env .env
 cp test.env .env.test
 cd ../
+```
 
+### STEP.3 ceate key
+
+```
+cd ./key
+ssh-keygen -t rsa -b 4096 -m PEM -f sample_jwt
+ssh-keygen -f sample_jwt.pub -e -m pem > sample_jwt.pub_
+
+rm sample_jwt.pub
+mv sample_jwt.pub_ sample_jwt.pub
+
+cd ../
+```
+
+### STEP.4 RUN API
+
+```
 npm run start
-```
-
-### ceate key
-
-```
-ssh-keygen -t rsa -b 4096 -m PEM -o name
-ssh-keygen -f name.pub -e -m pem > name.pub_
 ```
 
 ### SMPLE
