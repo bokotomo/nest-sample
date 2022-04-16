@@ -1,18 +1,22 @@
 version: '3.8'
+
 services:
-  nest-js-sample-db:
-    image: mysql:8.0.27
+  nestjs-sample-db:
+    image: mysql:8.0.28
     platform: linux/x86_64
-    container_name: nest-js-sample-db
+    container_name: nestjs-sample-db
     ports:
-      - '3388:3306'
+      - 3388:3306
     environment:
       MYSQL_ROOT_PASSWORD: dev
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+      MYSQL_DATABASE: dev
       TZ: Asia/Tokyo
     volumes:
       - ./mysql/mysql-confd:/etc/mysql/conf.d
 
 networks:
   default:
-    external:
-      name: nest-js-sample
+    external: true
+    name: nestjs-sample

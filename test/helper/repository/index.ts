@@ -1,6 +1,6 @@
 import { Connection } from 'typeorm';
-import { User } from '../../../src/entity/user';
-import { Design } from '../../../src/entity/design';
+import { User } from '../../../src/_database/entity/user';
+import { Design } from '../../../src/_database/entity/design';
 
 export class Repository {
   constructor(private readonly c: Connection) {}

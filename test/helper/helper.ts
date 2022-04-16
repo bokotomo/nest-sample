@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ValidationPipe, INestApplication } from '@nestjs/common';
 import { Connection } from 'typeorm';
-import { AppModule } from '../../src/framework/app.module';
+import { AppModule } from '../../src/_framework/app.module';
 import { HttpRequest } from './request';
 import { Repository } from './repository';
-import { User } from '../../src/entity/user';
+import { User } from '../../src/_database/entity/user';
 
 export class Helper {
   private app: INestApplication;

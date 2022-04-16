@@ -1,6 +1,6 @@
 import { Helper } from './helper/helper';
 import { Role } from './helper/constant';
-import { Design } from '../src/entity/design';
+import { Design } from '../src/_database/entity/design';
 
 describe('design', () => {
   const helper = new Helper();
