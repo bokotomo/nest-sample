@@ -1,5 +1,5 @@
 import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
-import { DomainUser } from '../domain/user';
+import { DomainUser } from '../../domain/user';
 import { Repository } from 'typeorm';
 import { User } from '../../_database/entity/user';
 import { IRepositoryUser } from '../usecase/port/user';

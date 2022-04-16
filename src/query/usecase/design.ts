@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DomainDesign } from '../domain/design';
+import { DomainDesign } from '../../domain/design';
 import { QueryRepositoryDesign } from '../repository/design';
 import { IRepositoryDesign } from './port/design';
 

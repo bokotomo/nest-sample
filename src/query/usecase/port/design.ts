@@ -1,4 +1,4 @@
-import { DomainDesign } from '../../domain/design';
+import { DomainDesign } from '../../../domain/design';
 
 export interface IRepositoryDesign {
   findAll(): Promise<DomainDesign[]>;

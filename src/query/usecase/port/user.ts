@@ -1,4 +1,4 @@
-import { DomainUser } from '../../domain/user';
+import { DomainUser } from '../../../domain/user';
 
 export interface IRepositoryUser {
   findAll: () => Promise<DomainUser[]>;

@@ -1,5 +1,5 @@
 import { Injectable, Inject, UnauthorizedException } from '@nestjs/common';
-import { DomainUser } from '../domain/user';
+import { DomainUser } from '../../domain/user';
 import { Repository } from 'typeorm';
 import { User } from '../../_database/entity/user';
 import { ICommandRepositoryUser } from '../usecase/port/user';

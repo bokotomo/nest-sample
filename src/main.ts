@@ -8,7 +8,9 @@ async function bootstrap(): Promise<void> {
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new AllExceptionsFilter());
 
-  await app.listen(3001);
+  const port = 3001;
+  await app.listen(port);
 }
+
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 bootstrap();

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DomainUser } from '../domain/user';
+import { DomainUser } from '../../domain/user';
 import { CommandRepositoryUser } from '../repository/user';
 import { ICommandRepositoryUser } from './port/user';
 

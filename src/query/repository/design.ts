@@ -1,7 +1,7 @@
 import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Design } from '../../_database/entity/design';
-import { DomainDesign } from '../domain/design';
+import { DomainDesign } from '../../domain/design';
 import { IRepositoryDesign } from '../usecase/port/design';
 
 @Injectable()
