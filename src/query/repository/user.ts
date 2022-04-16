@@ -16,9 +16,10 @@ export class QueryRepositoryUser implements IRepositoryUser {
    */
   public async findAll(): Promise<DomainUser[]> {
     const users = await this.repositoryUser.find();
+
     return users.map(
-      (user: User) =>
-        new DomainUser(user.id, user.name, user.age, user.email, '', user.role),
+      (u: User): DomainUser =>
+        new DomainUser(u.id, u.name, u.age, u.email, '', u.role),
     );
   }
 
@@ -27,9 +28,9 @@ export class QueryRepositoryUser implements IRepositoryUser {
    */
   public async findById(id: string): Promise<DomainUser> {
     const user = await this.repositoryUser.findOne(id);
-    // errはreturnで返した方が良さそうだけど、迷う
     if (!user)
       throw new HttpException('not found user: ' + id, HttpStatus.FORBIDDEN);
+
     return new DomainUser(
       user.id,
       user.name,

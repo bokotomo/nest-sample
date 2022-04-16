@@ -14,12 +14,12 @@ export class QueryResponseUser {
    * レスポンス：ユーザー一覧取得
    */
   public index(users: DomainUser[]): QueryResponseUserIndex[] {
-    return users.map((user: DomainUser): QueryResponseUserIndex => {
-      return {
-        id: user.id(),
-        name: user.name(),
-      };
-    });
+    return users.map(
+      (u: DomainUser): QueryResponseUserIndex => ({
+        id: u.id(),
+        name: u.name(),
+      }),
+    );
   }
 
   /**

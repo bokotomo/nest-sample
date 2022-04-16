@@ -14,12 +14,12 @@ export class QueryResponseDesign {
    * レスポンス：デザイン一覧取得
    */
   public index(designs: DomainDesign[]): QueryResponseDesignIndex[] {
-    return designs.map((design: DomainDesign): QueryResponseDesignIndex => {
-      return {
-        id: design.id(),
-        name: design.title(),
-      };
-    });
+    return designs.map(
+      (d: DomainDesign): QueryResponseDesignIndex => ({
+        id: d.id(),
+        name: d.title(),
+      }),
+    );
   }
 
   /**

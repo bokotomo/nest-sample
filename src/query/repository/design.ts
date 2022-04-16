@@ -16,8 +16,9 @@ export class QueryRepositoryDesign implements IRepositoryDesign {
    */
   public async findAll(): Promise<DomainDesign[]> {
     const designs = await this.repositoryDesign.find();
+
     return designs.map(
-      (design: Design) => new DomainDesign(design.id, design.title),
+      (d: Design): DomainDesign => new DomainDesign(d.id, d.title),
     );
   }
 
@@ -28,6 +29,7 @@ export class QueryRepositoryDesign implements IRepositoryDesign {
     const design = await this.repositoryDesign.findOne(id);
     if (!design)
       throw new HttpException('not found design: ' + id, HttpStatus.FORBIDDEN);
+
     return new DomainDesign(design.id, design.title);
   }
 }

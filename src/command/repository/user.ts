@@ -37,9 +37,13 @@ export class CommandRepositoryUser implements ICommandRepositoryUser {
    */
   public async login(email: string, password: string): Promise<DomainUser> {
     const user = await this.repositoryUser.findOne({
-      where: { email, password },
+      where: {
+        email,
+        password,
+      },
     });
     if (!user) throw new UnauthorizedException();
+
     return new DomainUser(user.id, '', 0, user.email, '', user.role);
   }
 }
