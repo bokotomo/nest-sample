@@ -59,3 +59,13 @@ curl -X POST http://localhost:3001/users/create -d 'name=boko' -d 'age=11'
 ```
 npm run test:e2e
 ```
+
+### package
+
+```
+npm i -D jest typescript ts-jest @types/jest
+
+npm i -D @nestjs/cli @nestjs/schematics @nestjs/testing @types/express @types/node @types/passport-jwt @types/supertest @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier eslint-config-standard-with-typescript eslint-plugin-import eslint-plugin-node eslint-plugin-prettier eslint-plugin-promise eslint-plugin-standard prettier supertest ts-loader ts-node tsconfig-paths
+
+npm i @nestjs/common @nestjs/config @nestjs/core @nestjs/jwt @nestjs/passport @nestjs/platform-express class-transformer class-validator mysql passport passport-jwt reflect-metadata rimraf rxjs typeorm
+```
